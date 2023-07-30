@@ -8,7 +8,7 @@ from tqdm import tqdm
 from text import _clean_text
 
 
-path = "/content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/MyTTSDataset_Copy/metadata.txt"
+path = "/content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/MyTTSDataset_Copy/"
 
 
 def prepare_align(config):
@@ -18,7 +18,7 @@ def prepare_align(config):
     max_wav_value = config["preprocessing"]["audio"]["max_wav_value"]
     cleaners = config["preprocessing"]["text"]["text_cleaners"]
     speaker = "LJSpeech"
-    with open(path, encoding="utf-8") as f:
+    with open(path+"metadata.txt", encoding="utf-8") as f:
         for line in tqdm(f):
             parts = line.strip().split("|")
             base_name = parts[0]
