@@ -70,11 +70,19 @@ class Preprocessor:
         # speakers = {}
         # speakers = {}
         for i, speaker in enumerate(tqdm(os.listdir(self.in_dir))):
-            print("i ", i)
-            print("speaker ", speaker)
-            speakers[speaker] = i
+            print()
+            print("i ", i)  # 0
+            print("speaker ", speaker)  # speaker = wavs
+            speakers[speaker] = i  # {wavs: 0}
             print("speakers ", speakers)
-            for wav_name in os.listdir(os.path.join(self.in_dir, speaker)):
+            # in_dir = "/content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/MyTTSDataset_Copy"
+            # + wavs
+
+            print("os.path.join: ", os.path.join(self.in_dir, speaker))
+            print("os.listdir: ", os.listdir(
+                os.path.join(self.in_dir, speaker)))
+
+            for wav_name in os.listdir(os.path.join(self.in_dir, speaker)):  #
                 if ".wav" not in wav_name:
                     continue
 
