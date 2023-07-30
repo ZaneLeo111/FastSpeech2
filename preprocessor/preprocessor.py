@@ -87,10 +87,15 @@ class Preprocessor:
                     continue
 
                 basename = wav_name.split(".")[0]
+                # out_dir = "/content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/MyTTSDataset_Copy"
+                print("out_dir: ", self.out_dir)
+                print("basename: ", basename)
                 tg_path = os.path.join(
                     self.out_dir, "TextGrid", speaker, "{}.TextGrid".format(
                         basename)
                 )
+
+                print("tg_path: ", tg_path)
                 if os.path.exists(tg_path):
                     ret = self.process_utterance(speaker, basename)
                     if ret is None:
