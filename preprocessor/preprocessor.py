@@ -64,15 +64,18 @@ class Preprocessor:
 
         # Compute pitch, energy, duration, and mel-spectrogram
         speakers = {}
+        # print("path ", os.listdir(self.in_dir))
         for i, speaker in enumerate(tqdm(os.listdir(self.in_dir))):
             speakers[speaker] = i
+            print("speaker ", speaker)
             for wav_name in os.listdir(os.path.join(self.in_dir, speaker)):
                 if ".wav" not in wav_name:
                     continue
 
                 basename = wav_name.split(".")[0]
                 tg_path = os.path.join(
-                    self.out_dir, "TextGrid", speaker, "{}.TextGrid".format(basename)
+                    self.out_dir, "TextGrid", speaker, "{}.TextGrid".format(
+                        basename)
                 )
                 if os.path.exists(tg_path):
                     ret = self.process_utterance(speaker, basename)
@@ -144,7 +147,7 @@ class Preprocessor:
 
         # Write metadata
         with open(os.path.join(self.out_dir, "train.txt"), "w", encoding="utf-8") as f:
-            for m in out[self.val_size :]:
+            for m in out[self.val_size:]:
                 f.write(m + "\n")
         with open(os.path.join(self.out_dir, "val.txt"), "w", encoding="utf-8") as f:
             for m in out[: self.val_size]:
@@ -153,8 +156,10 @@ class Preprocessor:
         return out
 
     def process_utterance(self, speaker, basename):
-        wav_path = os.path.join(self.in_dir, speaker, "{}.wav".format(basename))
-        text_path = os.path.join(self.in_dir, speaker, "{}.lab".format(basename))
+        wav_path = os.path.join(self.in_dir, speaker,
+                                "{}.wav".format(basename))
+        text_path = os.path.join(self.in_dir, speaker,
+                                 "{}.lab".format(basename))
         tg_path = os.path.join(
             self.out_dir, "TextGrid", speaker, "{}.TextGrid".format(basename)
         )
@@ -171,7 +176,7 @@ class Preprocessor:
         # Read and trim wav files
         wav, _ = librosa.load(wav_path)
         wav = wav[
-            int(self.sampling_rate * start) : int(self.sampling_rate * end)
+            int(self.sampling_rate * start): int(self.sampling_rate * end)
         ].astype(np.float32)
 
         # Read raw text
@@ -184,7 +189,8 @@ class Preprocessor:
             self.sampling_rate,
             frame_period=self.hop_length / self.sampling_rate * 1000,
         )
-        pitch = pw.stonemask(wav.astype(np.float64), pitch, t, self.sampling_rate)
+        pitch = pw.stonemask(wav.astype(np.float64),
+                             pitch, t, self.sampling_rate)
 
         pitch = pitch[: sum(duration)]
         if np.sum(pitch != 0) <= 1:
@@ -210,7 +216,7 @@ class Preprocessor:
             pos = 0
             for i, d in enumerate(duration):
                 if d > 0:
-                    pitch[i] = np.mean(pitch[pos : pos + d])
+                    pitch[i] = np.mean(pitch[pos: pos + d])
                 else:
                     pitch[i] = 0
                 pos += d
@@ -221,7 +227,7 @@ class Preprocessor:
             pos = 0
             for i, d in enumerate(duration):
                 if d > 0:
-                    energy[i] = np.mean(energy[pos : pos + d])
+                    energy[i] = np.mean(energy[pos: pos + d])
                 else:
                     energy[i] = 0
                 pos += d
