@@ -1,14 +1,14 @@
-g2p-en == 2.1.0
-inflect == 4.1.0
+g2p-en
+inflect 
 librosa
-matplotlib == 3.2.2
+matplotlib
 numba
-pypinyin==0.39.0
-pyworld == 0.2.10
+pypinyin
+pyworld
 # PyYAML==5.4.1
 scikit-learn
 scipy
-soundfile==0.10.3.post1
+soundfile
 tensorboard
 tgt
 torch
