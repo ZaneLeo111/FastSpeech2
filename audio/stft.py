@@ -2,8 +2,10 @@ import torch
 import torch.nn.functional as F
 import numpy as np
 from scipy.signal import get_window
+import librosa
 from librosa.util import pad_center, tiny
 from librosa.filters import mel as librosa_mel_fn
+import matplotlib.pyplot as plt
 
 from audio.audio_processing import (
     dynamic_range_compression,
@@ -148,8 +150,14 @@ class TacotronSTFT(torch.nn.Module):
         self.sampling_rate = sampling_rate
         self.stft_fn = STFT(filter_length, hop_length, win_length)
         mel_basis = librosa_mel_fn(
-            sampling_rate, filter_length, n_mel_channels, mel_fmin, mel_fmax
+            sr=sampling_rate, n_fft=filter_length, n_mel=n_mel_channels, fmin=mel_fmin, fmax=mel_fmax
         )
+
+        fig, ax = plt.subplots()
+        img = librosa.display.specshow(mel_basis, x_axis='linear', ax=ax)
+        ax.set(ylabel='Mel filter', title='Mel filter bank')
+        fig.colorbar(img, ax=ax)
+
         mel_basis = torch.from_numpy(mel_basis).float()
         self.register_buffer("mel_basis", mel_basis)
 
