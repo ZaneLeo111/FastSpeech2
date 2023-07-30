@@ -27,7 +27,8 @@ class STFT(torch.nn.Module):
 
         cutoff = int((self.filter_length / 2 + 1))
         fourier_basis = np.vstack(
-            [np.real(fourier_basis[:cutoff, :]), np.imag(fourier_basis[:cutoff, :])]
+            [np.real(fourier_basis[:cutoff, :]),
+             np.imag(fourier_basis[:cutoff, :])]
         )
 
         forward_basis = torch.FloatTensor(fourier_basis[:, None, :])
@@ -39,7 +40,7 @@ class STFT(torch.nn.Module):
             assert filter_length >= win_length
             # get window and zero center pad it to filter_length
             fft_window = get_window(window, win_length, fftbins=True)
-            fft_window = pad_center(fft_window, filter_length)
+            fft_window = pad_center(fft_window, size=filter_length)
             fft_window = torch.from_numpy(fft_window).float()
 
             # window the bases
@@ -66,7 +67,8 @@ class STFT(torch.nn.Module):
 
         forward_transform = F.conv1d(
             input_data.cuda(),
-            torch.autograd.Variable(self.forward_basis, requires_grad=False).cuda(),
+            torch.autograd.Variable(
+                self.forward_basis, requires_grad=False).cuda(),
             stride=self.hop_length,
             padding=0,
         ).cpu()
@@ -76,7 +78,8 @@ class STFT(torch.nn.Module):
         imag_part = forward_transform[:, cutoff:, :]
 
         magnitude = torch.sqrt(real_part ** 2 + imag_part ** 2)
-        phase = torch.autograd.Variable(torch.atan2(imag_part.data, real_part.data))
+        phase = torch.autograd.Variable(
+            torch.atan2(imag_part.data, real_part.data))
 
         return magnitude, phase
 
@@ -116,8 +119,10 @@ class STFT(torch.nn.Module):
             # scale by hop ratio
             inverse_transform *= float(self.filter_length) / self.hop_length
 
-        inverse_transform = inverse_transform[:, :, int(self.filter_length / 2) :]
-        inverse_transform = inverse_transform[:, :, : -int(self.filter_length / 2) :]
+        inverse_transform = inverse_transform[:, :, int(
+            self.filter_length / 2):]
+        inverse_transform = inverse_transform[:,
+                                              :, : -int(self.filter_length / 2):]
 
         return inverse_transform
 
