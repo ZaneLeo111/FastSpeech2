@@ -65,12 +65,15 @@ class Preprocessor:
         # Compute pitch, energy, duration, and mel-spectrogram
         speakers = {}
         print("path ", os.listdir(self.in_dir))
+# ['wavs', 'LJSpeech', 'mel', 'pitch', 'energy', 'duration', 'metadata']
 
+        # speakers = {}
+        # speakers = {}
         for i, speaker in enumerate(tqdm(os.listdir(self.in_dir))):
             print("i ", i)
             print("speaker ", speaker)
             speakers[speaker] = i
-            print("speaker ", speaker)
+            print("speakers ", speakers)
             for wav_name in os.listdir(os.path.join(self.in_dir, speaker)):
                 if ".wav" not in wav_name:
                     continue
