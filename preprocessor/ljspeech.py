@@ -8,6 +8,9 @@ from tqdm import tqdm
 from text import _clean_text
 
 
+path = "/content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/MyTTSDataset_Copy"
+
+
 def prepare_align(config):
     in_dir = config["path"]["corpus_path"]
     out_dir = config["path"]["raw_path"]
