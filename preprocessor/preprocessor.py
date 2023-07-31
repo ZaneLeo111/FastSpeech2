@@ -99,6 +99,7 @@ class Preprocessor:
 
                 print("tg_path: ", tg_path)
                 if os.path.exists(tg_path):
+                    print("tg_path exists")
                     ret = self.process_utterance(speaker, basename)
                     if ret is None:
                         continue
