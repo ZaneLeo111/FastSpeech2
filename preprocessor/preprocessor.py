@@ -93,7 +93,7 @@ class Preprocessor:
 
                 # tg_path:  /content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/MyTTSDataset_Copy/TextGrid/wavs/audio27.TextGrid
                 tg_path = os.path.join(
-                    self.out_dir, "TextGrid", speaker, "{}.TextGrid".format(
+                    self.in_dir,  speaker, "{}.TextGrid".format(
                         basename)
                 )
 
@@ -190,7 +190,7 @@ class Preprocessor:
         # )
 
         tg_path = os.path.join(
-            self.out_dir, "TextGrid", speaker, "{}.TextGrid".format(basename)
+            self.in_dir, speaker, "{}.TextGrid".format(basename)
         )
 
         # Get alignments
