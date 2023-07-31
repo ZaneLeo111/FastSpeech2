@@ -102,8 +102,10 @@ class Preprocessor:
                     print("tg_path exists")
                     ret = self.process_utterance(speaker, basename)
                     if ret is None:
+                        print("ret is None")
                         continue
                     else:
+                        print("ret is not None")
                         info, pitch, energy, n = ret
                     out.append(info)
 
