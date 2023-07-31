@@ -116,3 +116,5 @@ output/
 *.npy
 # TextGrid/
 # hifigan/*.pth.tar
+❯ tar -xvf generator_LJSpeech.pth.tar
+tar: Error opening archive: Unrecognized archive format
