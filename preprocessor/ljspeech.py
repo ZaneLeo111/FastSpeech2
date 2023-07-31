@@ -17,8 +17,8 @@ def prepare_align(config):
     sampling_rate = config["preprocessing"]["audio"]["sampling_rate"]
     max_wav_value = config["preprocessing"]["audio"]["max_wav_value"]
     cleaners = config["preprocessing"]["text"]["text_cleaners"]
-    speaker = "LJSpeech"
-    with open(path+"metadata.txt", encoding="utf-8") as f:
+    speaker = "MyTTS"
+    with open(path+"metadata/metadata.txt", encoding="utf-8") as f:
         for line in tqdm(f):
             parts = line.strip().split("|")
             base_name = parts[0]

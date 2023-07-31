@@ -90,6 +90,8 @@ class Preprocessor:
                 # out_dir = "/content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/MyTTSDataset_Copy"
                 print("out_dir: ", self.out_dir)
                 print("basename: ", basename)
+
+                # tg_path:  /content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/MyTTSDataset_Copy/TextGrid/wavs/audio27.TextGrid
                 tg_path = os.path.join(
                     self.out_dir, "TextGrid", speaker, "{}.TextGrid".format(
                         basename)
