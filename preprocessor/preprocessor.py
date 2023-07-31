@@ -79,8 +79,8 @@ class Preprocessor:
             # + wavs
 
             print("os.path.join: ", os.path.join(self.in_dir, speaker))
-            print("os.listdir: ", os.listdir(
-                os.path.join(self.in_dir, speaker)))
+            # print("os.listdir: ", os.listdir(
+            #     os.path.join(self.in_dir, speaker)))
 
             for wav_name in os.listdir(os.path.join(self.in_dir, speaker)):  #
                 if ".wav" not in wav_name:
