@@ -89,7 +89,7 @@ class Preprocessor:
                 basename = wav_name.split(".")[0]
                 # out_dir = "/content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/MyTTSDataset_Copy"
                 print("out_dir: ", self.out_dir)
-                print("basename: ", basename)
+                print("basename: ", basename)  # audio1
 
                 # tg_path:  /content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/MyTTSDataset_Copy/TextGrid/wavs/audio27.TextGrid
                 tg_path = os.path.join(
@@ -180,10 +180,15 @@ class Preprocessor:
         return out
 
     def process_utterance(self, speaker, basename):
+        # in_dir = raw_path= "/content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/FastSpeech2/wavs"
         wav_path = os.path.join(self.in_dir, speaker,
-                                "{}.wav".format(basename))
+                                "{}.wav".format(basename))  # basename : audio1, speaker: Ze
         text_path = os.path.join(self.in_dir, speaker,
                                  "{}.lab".format(basename))
+        # tg_path = os.path.join(
+        #     self.out_dir, "TextGrid", speaker, "{}.TextGrid".format(basename)
+        # )
+
         tg_path = os.path.join(
             self.out_dir, "TextGrid", speaker, "{}.TextGrid".format(basename)
         )
