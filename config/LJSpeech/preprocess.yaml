@@ -13,7 +13,7 @@ path:
   # raw_path: "./raw_data/LJSpeech"
 
 preprocessing:
-  val_size: 512
+  val_size: 5
   text:
     text_cleaners: ["english_cleaners"]
     language: "en"
