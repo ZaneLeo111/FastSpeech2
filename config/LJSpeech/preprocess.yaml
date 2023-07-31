@@ -1,10 +1,10 @@
 dataset: "LJSpeech"
 
 path:
-  corpus_path: "/content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/MyTTSDataset_Copy"
+  corpus_path: "/content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/FastSpeech2"
   lexicon_path: "/content/gdrive/MyDrive/Colab Notebooks/honour_project/FastSpeech2/MyMMA/modified_librispeech-lexicon.txt"
-  #raw_path: "/content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/MyTTSDataset_Copy"
-  raw_path: "./raw_data/LJSpeech"
+  raw_path: "/content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/FastSpeech2/wavs"
+  # raw_path: "./raw_data/LJSpeech"
   preprocessed_path: "./preprocessed_data/LJSpeech"
   # preprocessed_path: "/content/gdrive/MyDrive/Colab Notebooks/honour_project/dataset/MyTTSDataset_Copy"
 
